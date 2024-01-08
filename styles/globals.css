@@ -3,7 +3,56 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        --track: #d1d1d1;
+        --thumb: #1b7ef6;
+    }
+
     .controls {
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 212, 255, 0) 100%);
+    }
+
+    /*********** Baseline, reset styles ***********/
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    /******** Chrome, Safari, Opera and Edge Chromium styles ********/
+    /* slider track */
+    input[type="range"]::-webkit-slider-runnable-track {
+        background-color: var(--track);
+        border-radius: 0.5rem;
+        height: 0.4rem;
+    }
+
+    /* slider thumb */
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: -4px; /* Centers thumb on the track */
+        background-color: var(--thumb);
+        border-radius: 0.5rem;
+        height: 0.9rem;
+        width: 0.9rem;
+    }
+
+    /*********** Firefox styles ***********/
+    /* slider track */
+    input[type="range"]::-moz-range-track {
+        background-color: var(--track);
+        border-radius: 0.5rem;
+        height: 0.4rem;
+    }
+
+    /* slider thumb */
+    input[type="range"]::-moz-range-thumb {
+        background-color: var(--thumb);
+        border: none;
+        border-radius: 0.5rem;
+        height: 0.9rem;
+        width: 0.9rem;
     }
 }

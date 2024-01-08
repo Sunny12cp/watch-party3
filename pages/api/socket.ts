@@ -11,34 +11,27 @@ export default function handler(req: any, res: any) {
     res.socket.server.io = io;
 
     io.on("connection", (socket) => {
-        socket.on("joinRoom", (id: string) => {
-            if (socket.rooms.has(id)) {
-                socket.join(id);
-            } else {
-                return `Room ${id} does not exist`;
-            }
-        });
-
-        socket.on("createRoom", (id: string) => {
+        socket.on("join room", (id: string) => {
+            console.log(io.sockets.adapter.rooms);
             socket.join(id);
         });
 
         socket.on("disconnect", () => {});
 
-        socket.on("changeVideoUrl", (url: string) => {
-            io.emit("receiveVideoUrlChange", url);
+        socket.on("change video url", (url: string, to: string) => {
+            io.to(to).emit("recieve video url", url);
         });
 
-        socket.on("playVideo", () => {
-            io.emit("startVideoPlayback");
+        socket.on("play video", (to: string) => {
+            io.to(to).emit("start video playback");
         });
 
-        socket.on("pauseVideo", () => {
-            io.emit("pauseVideoPlayback");
+        socket.on("pause video", (to: string) => {
+            io.to(to).emit("pause video playback");
         });
 
-        socket.on("seekVideo", (time: number) => {
-            io.emit("updateVideoTime", time);
+        socket.on("seek video", (time: number, to: string) => {
+            io.to(to).emit("update video time", time);
         });
     });
     res.end();

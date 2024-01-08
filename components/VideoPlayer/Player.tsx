@@ -1,29 +1,31 @@
-import dynamic from "next/dynamic";
-
-import { playerStyle } from "@/styles/video-player-style";
-import { useRef } from "react";
+import { playerStyle } from "@/styles/custom";
 import { usePlayer } from "@/hooks/usePlayer";
 import Controls from "./Controls";
 import { socket } from "@/lib/socket-manager";
-
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+import { useRef } from "react";
+import ReactPlayer from "react-player/lazy";
 
 function Player() {
-    const playerRef = useRef<any>();
-    const { videoState, setVideoState, togglePlayback } = usePlayer();
+    const ref = useRef<ReactPlayer>(null);
+    const { videoState, setVideoState, togglePlayback, room } = usePlayer();
 
     return (
         <div className="relative block w-fit">
-            <Controls state={videoState} setState={setVideoState} togglePlayback={togglePlayback} />
-
+            <Controls
+                room={room}
+                state={videoState}
+                setState={setVideoState}
+                togglePlayback={togglePlayback}
+                videoPlayerRef={ref}
+            />
             <ReactPlayer
-                ref={playerRef}
+                ref={ref}
                 width={890}
                 height={500}
                 url={videoState.url}
                 playing={videoState.isPlaying}
-                onPlay={() => socket?.emit("playVideo")}
-                onPause={() => socket?.emit("pauseVideo")}
+                onPlay={() => socket?.emit("play video", room)}
+                onPause={() => socket?.emit("pause video", room)}
                 onProgress={(state) => setVideoState({ ...videoState, progress: state })}
                 onDuration={(duration) => setVideoState({ ...videoState, duration })}
                 volume={videoState.volume}
