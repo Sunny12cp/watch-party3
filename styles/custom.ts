@@ -1,5 +1,5 @@
 export const playerStyle = {
-    borderRadius: ".7rem",
+    borderRadius: ".5rem",
     overflow: "hidden",
 } as const;
 

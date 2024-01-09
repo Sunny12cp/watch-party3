@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
+
 import { pinInputStyle } from "@/styles/custom";
 import PinInput from "react-pin-input";
+
 import Modal from "../Modal/Modal";
-import { useState } from "react";
 
 function RoomActionButtons() {
     const router = useRouter();

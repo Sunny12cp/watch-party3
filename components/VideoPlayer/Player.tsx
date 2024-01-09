@@ -7,30 +7,32 @@ import ReactPlayer from "react-player/lazy";
 
 function Player() {
     const ref = useRef<ReactPlayer>(null);
-    const { videoState, setVideoState, togglePlayback, room } = usePlayer();
+    const { videoState, setVideoState, togglePlayback, roomId, hasWindow } = usePlayer();
 
     return (
-        <div className="relative block w-fit">
+        <div className="relative block w-fit mx-auto mt-16">
             <Controls
-                room={room}
+                roomId={roomId}
                 state={videoState}
                 setState={setVideoState}
                 togglePlayback={togglePlayback}
                 videoPlayerRef={ref}
             />
-            <ReactPlayer
-                ref={ref}
-                width={890}
-                height={500}
-                url={videoState.url}
-                playing={videoState.isPlaying}
-                onPlay={() => socket?.emit("play video", room)}
-                onPause={() => socket?.emit("pause video", room)}
-                onProgress={(state) => setVideoState({ ...videoState, progress: state })}
-                onDuration={(duration) => setVideoState({ ...videoState, duration })}
-                volume={videoState.volume}
-                style={{ ...playerStyle }}
-            />
+            {hasWindow && (
+                <ReactPlayer
+                    ref={ref}
+                    width={1200}
+                    height={675}
+                    url={videoState.url}
+                    playing={videoState.isPlaying}
+                    onPlay={() => socket?.emit("play video", roomId)}
+                    onPause={() => socket?.emit("pause video", roomId)}
+                    onProgress={(state) => setVideoState({ ...videoState, progress: state })}
+                    onDuration={(duration) => setVideoState({ ...videoState, duration })}
+                    volume={videoState.volume}
+                    style={{ ...playerStyle }}
+                />
+            )}
         </div>
     );
 }

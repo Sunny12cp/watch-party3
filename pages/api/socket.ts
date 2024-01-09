@@ -12,11 +12,25 @@ export default function handler(req: any, res: any) {
 
     io.on("connection", (socket) => {
         socket.on("join room", (id: string) => {
-            console.log(io.sockets.adapter.rooms);
             socket.join(id);
+
+            // const users = io.sockets.adapter.rooms.get(id);
+            // const uids: string[] = [];
+            // users?.forEach((value) => uids.push(value));
+
+            // io.to(id).emit("user join", "hi");
         });
 
-        socket.on("disconnect", () => {});
+        socket.on("leave", (id: string) => {
+            socket.leave(id);
+            socket.disconnect();
+
+            // const users = io.sockets.adapter.rooms.get(id);
+            // const uids: string[] = [];
+            // users?.forEach((value) => uids.push(value));
+
+            // io.to(id).emit("user leave", uids);
+        });
 
         socket.on("change video url", (url: string, to: string) => {
             io.to(to).emit("recieve video url", url);
@@ -34,5 +48,6 @@ export default function handler(req: any, res: any) {
             io.to(to).emit("update video time", time);
         });
     });
+
     res.end();
 }

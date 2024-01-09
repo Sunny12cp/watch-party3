@@ -1,4 +1,4 @@
-import RoomActionButtons from "@/components/ui/Buttons/RoomActionButtons";
+import RoomActionButtons from "@/components/Buttons/RoomActionButtons";
 
 function Home() {
     return (
