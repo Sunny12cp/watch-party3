@@ -13,23 +13,11 @@ export default function handler(req: any, res: any) {
     io.on("connection", (socket) => {
         socket.on("join room", (id: string) => {
             socket.join(id);
-
-            // const users = io.sockets.adapter.rooms.get(id);
-            // const uids: string[] = [];
-            // users?.forEach((value) => uids.push(value));
-
-            // io.to(id).emit("user join", "hi");
         });
 
         socket.on("leave", (id: string) => {
             socket.leave(id);
             socket.disconnect();
-
-            // const users = io.sockets.adapter.rooms.get(id);
-            // const uids: string[] = [];
-            // users?.forEach((value) => uids.push(value));
-
-            // io.to(id).emit("user leave", uids);
         });
 
         socket.on("change video url", (url: string, to: string) => {

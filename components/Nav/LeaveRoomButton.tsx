@@ -1,7 +1,7 @@
 import { socket } from "@/lib/socket-manager";
 import { useRouter } from "next/router";
 
-function LeaveRoom() {
+function LeaveRoomButton() {
     const router = useRouter();
 
     const handleDisconnect = () => {
@@ -20,4 +20,4 @@ function LeaveRoom() {
     );
 }
 
-export default LeaveRoom;
+export default LeaveRoomButton;

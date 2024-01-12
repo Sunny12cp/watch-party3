@@ -17,10 +17,10 @@ function LinkInput() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="text-neutral-200 w-64 rounded-sm px-4 py-1 bg-neutral-800 mr-3"
+                className="text-neutral-200 w-64 rounded-l-sm px-4 py-1 bg-neutral-800"
                 placeholder="Paste a link to a video"
             />
-            <button onClick={handleSubmit} className="bg-neutral-800 py-2 px-2.5 rounded-sm">
+            <button disabled={!input} onClick={handleSubmit} className="bg-neutral-600 py-2 px-2.5 rounded-r-sm">
                 <img src="/icons/search.svg" alt="search" />
             </button>
         </div>

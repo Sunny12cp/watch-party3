@@ -12,6 +12,9 @@
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 212, 255, 0) 100%);
     }
 
+    input::placeholder {
+        color: #d4d4d4;
+    }
     /*********** Baseline, reset styles ***********/
     input[type="range"] {
         -webkit-appearance: none;
@@ -54,5 +57,41 @@
         border-radius: 0.5rem;
         height: 0.9rem;
         width: 0.9rem;
+    }
+
+    @font-face {
+        font-family: inter-medium;
+        src: url("/fonts/Inter-Medium.ttf");
+    }
+
+    @font-face {
+        font-family: inter-semibold;
+        src: url("/fonts/Inter-SemiBold.ttf");
+    }
+
+    @font-face {
+        font-family: poppins-medium;
+        src: url("/fonts/Poppins-Medium.ttf");
+    }
+
+    @font-face {
+        font-family: poppins-semibold;
+        src: url("/fonts/Poppins-SemiBold.ttf");
+    }
+
+    @font-face {
+        font-family: Cubano;
+        src: url("/fonts/CUBANO.TTF");
+    }
+
+    progress {
+        height: 7px;
+    }
+
+    progress::-webkit-progress-bar {
+        background-color: var(--track);
+    }
+    progress::-webkit-progress-value {
+        background-color: #fde047;
     }
 }
