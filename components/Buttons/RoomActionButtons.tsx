@@ -4,6 +4,7 @@ import { generateRoomId } from "@/utils/generate-room-id";
 
 import { pinInputStyle } from "@/styles/custom";
 import PinInput from "react-pin-input";
+import Modal from "../Modal/Modal";
 
 function RoomActionButtons() {
     const router = useRouter();
@@ -27,14 +28,15 @@ function RoomActionButtons() {
                 </button>
             </div>
 
-            {showCodeInput && (
+            <Modal isOpen={showCodeInput} onClose={() => setShowCodeInput(false)}>
+                <h1 className="text-3xl text-left mb-5 text-neutral-200">Enter room code</h1>
                 <PinInput
                     length={4}
                     type="custom"
                     onComplete={(value) => router.push(`/room/${value}`)}
                     inputStyle={{ ...pinInputStyle }}
                 />
-            )}
+            </Modal>
         </div>
     );
 }

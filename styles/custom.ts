@@ -4,10 +4,9 @@ export const playerStyle = {
 } as const;
 
 export const pinInputStyle = {
-    marginTop: "2.5rem",
+    border: "2px solid #a3a3a3",
+    marginRight: "20px",
+    width: "90px",
+    height: "90px",
     color: "white",
-    border: "2px solid #F8F8F8",
-    margin: "0 47px",
-    width: "5rem",
-    height: "5rem",
 } as const;
